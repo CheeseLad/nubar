@@ -1,5 +1,9 @@
-# Animated DVD Logo
-Bouncy DVD logo using CSS animations. Reminiscient of falling asleep on the sofa and waking up at 3am with the TV still on and your movie long finished.
+# nubar
 
-Created using simple CSS animations for nostalgia reasons.
-![Capture](https://user-images.githubusercontent.com/25615907/131000156-20c49e32-6d45-4214-ba29-e251aabde83e.PNG)
+Like a bouncing DVD logo from back in the day, but with pints of Guinness, what's not to like?
+
+Check it out live: [https://nubar.xyz](https://nubar.xyz)
+
+Original code from [here](https://github.com/clemmurphy/DVD-Logo-Animation)
+
+![Preview](./images/preview.png)
