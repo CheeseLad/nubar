@@ -8,6 +8,82 @@
   <title>DVD Screensaver</title>
 </head>
 <body>
-  <div class="ball"></div>
+  <div class="instructions">Click on the pint for a surprise!</div>
+
+  <script>
+    const baseWidth = 250;
+    const baseHeight = baseWidth / 2;
+
+    function playSound() {
+      const sound = new Audio('sounds/click.mp3');
+      sound.play();
+    }
+
+    function createBall(x = null, y = null) {
+      const ball = document.createElement('div');
+      ball.classList.add('ball');
+
+      // Get actual ball dimensions from CSS
+      const ballWidth = 500; // --width from CSS
+      const ballHeight = 250; // --height from CSS
+
+      const maxX = window.innerWidth - ballWidth;
+      const maxY = window.innerHeight - ballHeight;
+
+      const left = x !== null ? x : Math.floor(Math.random() * maxX);
+      const top = y !== null ? y : Math.floor(Math.random() * maxY);
+
+      ball.style.left = left + 'px';
+      ball.style.top = top + 'px';
+
+      // Add bouncing animation
+      let xDirection = 1;
+      let yDirection = 1;
+      let xPos = left;
+      let yPos = top;
+      const speed = 4; // Increased speed
+
+      function animate() {
+        xPos += speed * xDirection;
+        yPos += speed * yDirection;
+
+        // Bounce off walls with better collision detection
+        if (xPos <= 0) {
+          xPos = 0;
+          xDirection = 1;
+        } else if (xPos >= maxX) {
+          xPos = maxX;
+          xDirection = -1;
+        }
+        
+        if (yPos <= 0) {
+          yPos = 0;
+          yDirection = 1;
+        } else if (yPos >= maxY) {
+          yPos = maxY;
+          yDirection = -1;
+        }
+
+        ball.style.left = xPos + 'px';
+        ball.style.top = yPos + 'px';
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+
+      ball.addEventListener('click', (e) => {
+        e.stopPropagation();
+        playSound();
+        createBall();
+      });
+
+      document.body.appendChild(ball);
+    }
+
+    // Create the initial ball with random position
+    createBall();
+  </script>
+
 </body>
 </html>
