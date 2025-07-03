@@ -116,6 +116,11 @@
         pintCount++;
         updatePintCount();
         createBall();
+        
+        // Track pint click with Plausible
+        if (window.plausible) {
+          window.plausible('Pint Clicked', { props: { pintCount: pintCount } });
+        }
       });
 
       document.body.appendChild(ball);
