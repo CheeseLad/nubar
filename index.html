@@ -19,15 +19,40 @@
   <script defer data-domain="nubar.xyz" src="https://plausible.jakefarrell.ie/js/script.js"></script>
 </head>
 <body>
-  <div class="instructions">Click on the pint for a surprise!</div>
+  <div class="container">
+    <div class="instructions">Click on the pint for a surprise!</div>
+    <div class="pint-count">Pint Count: 1</div>
+  </div>
 
   <script>
-    const baseWidth = 250;
-    const baseHeight = baseWidth / 2;
+    let pintCount = 1;
+    
+    function updatePintCount() {
+      const pintCountElement = document.querySelector('.pint-count');
+      pintCountElement.textContent = `Pint Count: ${pintCount}`;
+    }
+
+    function getBallDimensions() {
+      // Create a temporary ball element to get actual computed dimensions
+      const tempBall = document.createElement('div');
+      tempBall.classList.add('ball');
+      tempBall.style.position = 'absolute';
+      tempBall.style.visibility = 'hidden';
+      tempBall.style.top = '-9999px';
+      
+      document.body.appendChild(tempBall);
+      
+      const width = tempBall.offsetWidth;
+      const height = tempBall.offsetHeight;
+      
+      document.body.removeChild(tempBall);
+      
+      return { width, height };
+    }
 
     function playSound() {
       const sound = new Audio('sounds/click.mp3');
-      sound.play();
+      sound.play().catch(e => console.log('Sound play failed:', e));
     }
 
     function createBall(x = null, y = null) {
@@ -35,14 +60,13 @@
       ball.classList.add('ball');
 
       // Get actual ball dimensions from CSS
-      const ballWidth = 500; // --width from CSS
-      const ballHeight = 250; // --height from CSS
+      const { width: ballWidth, height: ballHeight } = getBallDimensions();
 
       const maxX = window.innerWidth - ballWidth;
       const maxY = window.innerHeight - ballHeight;
 
-      const left = x !== null ? x : Math.floor(Math.random() * maxX);
-      const top = y !== null ? y : Math.floor(Math.random() * maxY);
+      const left = x !== null ? x : Math.floor(Math.random() * Math.max(0, maxX));
+      const top = y !== null ? y : Math.floor(Math.random() * Math.max(0, maxY));
 
       ball.style.left = left + 'px';
       ball.style.top = top + 'px';
@@ -52,7 +76,10 @@
       let yDirection = 1;
       let xPos = left;
       let yPos = top;
-      const speed = 4; // Increased speed
+      
+      // Adjust speed based on screen size (slower on smaller screens)
+      const isMobile = window.innerWidth <= 768;
+      const speed = isMobile ? 2 : 4;
 
       function animate() {
         xPos += speed * xDirection;
@@ -86,11 +113,30 @@
       ball.addEventListener('click', (e) => {
         e.stopPropagation();
         playSound();
+        pintCount++;
+        updatePintCount();
         createBall();
       });
 
       document.body.appendChild(ball);
     }
+
+    // Handle window resize to recalculate dimensions
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        // Remove all existing balls and recreate the same number
+        const existingBalls = document.querySelectorAll('.ball');
+        const numberOfBalls = existingBalls.length;
+        existingBalls.forEach(ball => ball.remove());
+        
+        // Recreate all balls that existed before
+        for (let i = 0; i < numberOfBalls; i++) {
+          createBall();
+        }
+      }, 250);
+    });
 
     // Create the initial ball with random position
     createBall();
