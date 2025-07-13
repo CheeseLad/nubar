@@ -115,6 +115,11 @@
   <div class="container">
     <div class="instructions">Click on the pint for a surprise!</div>
     <div class="pint-count">Pint Count: 1</div>
+    <div class="speed-control">
+      <label for="speed-slider">Speed:</label>
+      <input type="range" id="speed-slider" min="1" max="10" value="4" class="speed-slider">
+      <span id="speed-value">4</span>
+    </div>
   </div>
 
   <!-- Main content for SEO -->
@@ -145,10 +150,16 @@
 
   <script>
     let pintCount = 1;
+    let currentSpeed = 4;
     
     function updatePintCount() {
       const pintCountElement = document.querySelector('.pint-count');
       pintCountElement.textContent = `Pint Count: ${pintCount}`;
+    }
+    
+    function updateSpeedValue() {
+      const speedValueElement = document.getElementById('speed-value');
+      speedValueElement.textContent = currentSpeed;
     }
 
     function getBallDimensions() {
@@ -196,9 +207,9 @@
       let xPos = left;
       let yPos = top;
       
-      // Adjust speed based on screen size (slower on smaller screens)
+      // Use current speed setting, with mobile adjustment
       const isMobile = window.innerWidth <= 768;
-      const speed = isMobile ? 2 : 4;
+      const speed = isMobile ? Math.max(1, currentSpeed / 2) : currentSpeed;
 
       function animate() {
         xPos += speed * xDirection;
@@ -262,6 +273,29 @@
       }, 250);
     });
 
+    // Speed slider functionality
+    const speedSlider = document.getElementById('speed-slider');
+    speedSlider.addEventListener('input', (e) => {
+      currentSpeed = parseInt(e.target.value);
+      updateSpeedValue();
+      
+      // Update speed for all existing balls
+      const existingBalls = document.querySelectorAll('.ball');
+      existingBalls.forEach(ball => {
+        // Remove the ball and recreate it with new speed
+        ball.remove();
+      });
+      
+      // Recreate all balls with new speed
+      const numberOfBalls = existingBalls.length;
+      for (let i = 0; i < numberOfBalls; i++) {
+        createBall();
+      }
+    });
+    
+    // Initialize speed value display
+    updateSpeedValue();
+    
     // Create the initial ball with random position
     createBall();
   </script>
