@@ -9,6 +9,8 @@ COPY index.html /usr/share/nginx/html/
 COPY styles/ /usr/share/nginx/html/styles/
 COPY images/ /usr/share/nginx/html/images/
 COPY sounds/ /usr/share/nginx/html/sounds/
+COPY sitemap.xml /usr/share/nginx/html/
+COPY robots.txt /usr/share/nginx/html/
 
 # Expose port 80
 EXPOSE 80
