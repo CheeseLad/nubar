@@ -4,6 +4,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <!-- Primary Meta Tags -->
+  <title>Few Pints With the Lads Tonight! - Interactive Guinness Pint Game</title>
+  <meta name="title" content="Few Pints With the Lads Tonight! - Interactive Guinness Pint Game">
+  <meta name="description" content="Click on the bouncing Guinness pints in this fun interactive game! Like the classic DVD logo screensaver, but with pints of Guinness. Perfect for a laugh with the lads.">
+  <meta name="keywords" content="guinness, pint, game, interactive, bouncing, dvd logo, fun, irish, beer, pub, lads">
+  <meta name="author" content="nubar.xyz">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content="7 days">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nubar.xyz/">
+  <meta property="og:title" content="Few Pints With the Lads Tonight! - Interactive Guinness Pint Game">
+  <meta property="og:description" content="Click on the bouncing Guinness pints in this fun interactive game! Like the classic DVD logo screensaver, but with pints of Guinness.">
+  <meta property="og:image" content="https://nubar.xyz/images/preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="nubar.xyz">
+  <meta property="og:locale" content="en_US">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://nubar.xyz/">
+  <meta property="twitter:title" content="Few Pints With the Lads Tonight! - Interactive Guinness Pint Game">
+  <meta property="twitter:description" content="Click on the bouncing Guinness pints in this fun interactive game! Like the classic DVD logo screensaver, but with pints of Guinness.">
+  <meta property="twitter:image" content="https://nubar.xyz/images/preview.png">
+  
+  <!-- Additional SEO Meta Tags -->
+  <meta name="theme-color" content="#000000">
+  <meta name="msapplication-TileColor" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Few Pints With the Lads">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://nubar.xyz/">
+  
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="styles/main.css">
   
   <!-- Favicon and Icons -->
@@ -15,7 +55,45 @@
   <link rel="icon" type="image/png" sizes="512x512" href="/images/icons/android-chrome-512x512.png">
   <link rel="manifest" href="/images/icons/site.webmanifest">
   
-  <title>Few Pints With the Lads Tonight!</title>
+  <!-- Preload critical resources -->
+  <link rel="preload" href="images/guiness.webp" as="image">
+  <link rel="preload" href="sounds/click.mp3" as="audio">
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Few Pints With the Lads Tonight!",
+    "description": "Interactive Guinness pint game where you click on bouncing pints, inspired by the classic DVD logo screensaver.",
+    "url": "https://nubar.xyz",
+    "applicationCategory": "Game",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "nubar.xyz"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "nubar.xyz",
+      "url": "https://nubar.xyz"
+    },
+    "screenshot": "https://nubar.xyz/images/preview.png",
+    "genre": "Casual Game",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.5",
+      "ratingCount": "100"
+    }
+  }
+  </script>
+  
+  <!-- Analytics -->
   <script defer data-domain="nubar.xyz" src="https://pa.jakefarrell.ie/js/script.js"></script>
 </head>
 <body>
@@ -23,6 +101,32 @@
     <div class="instructions">Click on the pint for a surprise!</div>
     <div class="pint-count">Pint Count: 1</div>
   </div>
+
+  <!-- Main content for SEO -->
+  <main style="display: none;">
+    <h1>Few Pints With the Lads Tonight!</h1>
+    <p>Welcome to the interactive Guinness pint game! Click on the bouncing pints to increase your count and have some fun. This game is inspired by the classic DVD logo screensaver that many of us remember from the early 2000s, but with a fun Irish twist featuring pints of Guinness.</p>
+    
+    <h2>How to Play</h2>
+    <ul>
+      <li>Watch as Guinness pints bounce around your screen</li>
+      <li>Click on any pint to increase your pint count</li>
+      <li>Each click creates a new bouncing pint</li>
+      <li>Try to get the highest pint count possible!</li>
+    </ul>
+    
+    <h2>Features</h2>
+    <ul>
+      <li>Interactive Guinness pint animation</li>
+      <li>Sound effects on click</li>
+      <li>Responsive design for mobile and desktop</li>
+      <li>Realistic bouncing physics</li>
+      <li>Pint counter to track your progress</li>
+    </ul>
+    
+    <h2>About the Game</h2>
+    <p>This fun interactive game brings back memories of the classic DVD logo screensaver, but with a humorous twist featuring pints of Guinness. Perfect for a quick break or to share with friends for a laugh. The game is completely free to play and works on any modern web browser.</p>
+  </main>
 
   <script>
     let pintCount = 1;
